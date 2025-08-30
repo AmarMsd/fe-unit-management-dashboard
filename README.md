@@ -1,12 +1,45 @@
-# React + Vite
+# Bobobox Frontend (React + Vite)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend application for the Capsul Management demo. Built with React and Vite.
 
-Currently, two official plugins are available:
+## Overview
+This UI connects to the backend API (default: http://127.0.0.1:8000) to list, add, update and delete capsul/cabin units. It includes filtering, inline editing, status management, and pagination.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Quick start (development)
+1. Install dependencies:
+   npm install
+2. Run dev server:
+   npm run dev
+3. Open in browser:
+   http://localhost:5173 (or the port printed by Vite)
 
-## Expanding the ESLint configuration
+## Backend API (default)
+- GET  /api/units            - list units (supports ?status=)
+- POST /api/units            - create unit (payload: { name, id_type, status })
+- GET  /api/units/{id}       - get unit by id
+- PUT  /api/units/{id}       - update unit (payload: { name, id_type, status })
+- DELETE /api/units/{id}     - delete unit
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The frontend expects the backend to be available at http://127.0.0.1:8000 by default. Change endpoints in the code if your backend runs elsewhere.
+
+## Development Authentication (bypass)
+- Note: for local development and demo purposes the app uses a simple authentication bypass.
+- Development credentials:
+  - Username: admin
+  - Password: admin
+
+Warning: These credentials are for local testing only. Do NOT use this bypass in staging or production. Remove or replace the bypass with proper authentication (OAuth/JWT/session-based) before deploying.
+
+## Security recommendations
+- Replace the dev bypass with a secure auth mechanism.
+- Store secrets in environment variables (do not commit .env with credentials).
+- Use HTTPS in production.
+- Apply rate limiting and proper input validation on the backend.
+
+## Tests & linting
+- Run tests (if any): npm test
+- Lint: npm run lint
+
+## Notes
+- See backend README and code under `be/` for DB, models and seeding instructions.
+- For issues or further setup questions, inspect `be/.env` and `/be/utils/connection/connection_mysql.py` to ensure DB connectivity.
