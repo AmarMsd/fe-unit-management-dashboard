@@ -42,7 +42,7 @@ function CapsulPage() {
 
   // Fetch all units
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/units")
+    fetch(`${import.meta.env.VITE_API_URL}/api/units`)
       .then((res) => res.json())
       .then((data) => {
         setCapsuls(data);
